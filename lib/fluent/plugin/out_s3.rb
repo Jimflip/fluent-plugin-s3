@@ -116,7 +116,11 @@ class S3Output < Fluent::TimeSlicedOutput
         "path" => @path,
         "time_slice" => chunk.key,
         "file_extension" => @ext,
-        "index" => i
+        "index" => i,
+        "Y" => year,
+        "m" => month,
+        "d" => day,
+        "H" => hour
       }
       s3path = @s3_object_key_format.gsub(%r(%{[^}]+})) { |expr|
         values_for_s3_object_key[expr[2...expr.size-1]]
