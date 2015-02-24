@@ -112,6 +112,11 @@ class S3Output < Fluent::TimeSlicedOutput
     i = 0
 
     begin
+      year = chunk.key[0..3]
+      month = chunk.key[4..5]
+      day = chunk.key[6..7]
+      hour = chunk.key[8..9]
+      
       values_for_s3_object_key = {
         "path" => @path,
         "time_slice" => chunk.key,
